@@ -1,9 +1,7 @@
-// import images as relative image path won't work with vite/vercel.
 import check from '../assets/check.svg'
 import star from '../assets/star.svg'
-// import sushi12 from '../assets/sushi-12.png'
-// import sushi11 from '../assets/sushi-11.png'
-// import sushi10 from '../assets/sushi-10.png'
+// Ensure soup1 and soup2 are imported if you are using them in your 'cards' array!
+// import soup1 from '../assets/soup1.png' 
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -14,45 +12,36 @@ AOS.init({
     offset: 100,
 });
 
-const trendingSushis = [
-    'Make Sushi',
-    'Nigiri Sushi',
-    'Oshizushi',
-    'Temaki Sushi',
-    'Uramaki Sushi',
-    'Inari Sushi'
-];
+// Use a function to initialize the menu once the DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const menuIcon = document.getElementById('menu-icon');
 
-const trendingDrinks = [
-    "Oruncha",
-    "Ofukucha",
-    "Sakura Tea",
-    "Kombu-cha",
-    "Aojiru",
-    "Mugicha",
-]
+    // Add a check to prevent errors if the elements are missing on certain pages
+    if (menuToggle && mobileDrawer && menuIcon) {
+        menuToggle.addEventListener('click', () => {
+            // 1. Slide the menu in/out
+            mobileDrawer.classList.toggle('active');
+            
+            // 2. Animate the book icon container
+            menuToggle.classList.toggle('active');
 
-const cards = [
-    {
-        imgSrc: sushi12,
-        alt: "sushi-12",
-        title: "Chezu Sushi",
-        rating: "4.8",
-        price: "$21.00"
-    },
-    {
-        imgSrc: sushi11,
-        alt: "sushi-11",
-        title: "Originale Sushi",
-        rating: "4.8",
-        price: "$21.00",
-        active: true
-    },
-    {
-        imgSrc: sushi10,
-        alt: "sushi-10",
-        title: "Ramen Legendo",
-        rating: "4.8",
-        price: "$21.00"
+            // 3. Swap book icon for an 'X'
+            if (mobileDrawer.classList.contains('active')) {
+                menuIcon.classList.replace('fa-book-open', 'fa-xmark');
+            } else {
+                menuIcon.classList.replace('fa-xmark', 'fa-book-open');
+            }
+        });
+
+        // Close the menu automatically when a link is clicked
+        document.querySelectorAll('.mobile-drawer li a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.remove('active');
+                menuToggle.classList.remove('active');
+                menuIcon.classList.replace('fa-xmark', 'fa-book-open');
+            });
+        });
     }
-];
+});
