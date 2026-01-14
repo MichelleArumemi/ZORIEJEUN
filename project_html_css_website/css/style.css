@@ -16,14 +16,14 @@
   --plus-jakarta-sans: "Plus Jakarta Sans", sans-serif;
 
   /* NIGERIAN POP PALETTE */
-  --primary-color: #008751;     /* Deep Nigerian Flag Green */
-  --secondary-color: #910c0c;   /* Zesty Pepper Red */
-  --accent-gold: #FFC107;       /* Golden Palm Oil */
+  --primary-color: #008751;
+  --secondary-color: #910c0c;
+  --accent-gold: #FFC107;
   
   --black-charcoal: #1A1A1A;
   --gray-subtle: #4A4A4A;
   --color-white: #ffffff;
-  --color-creamson: #FFF9F2;    /* Soft Pounded Yam Ivory */
+  --color-creamson: #FFF9F2;
 }
 
 /* --- BASE STYLES --- */
@@ -37,9 +37,9 @@
 body {
   max-width: 1280px;
   margin: 0 auto;
-  background-color: var(--color-creamson); /* FIXED: Was --charcoal-creamson */
+  background-color: var(--color-creamson);
   color: var(--black-charcoal);
-  overflow-x: hidden; /* FIXED: Prevents horizontal scattering/wobble on mobile */
+  overflow-x: hidden; 
 }
 
 a {
@@ -69,37 +69,64 @@ a {
   letter-spacing: -0.01em;
 }
 
-/* --- MOBILE DRAWER (THE ACTUAL MENU) --- */
+/* --- MOBILE DRAWER --- */
 .mobile-drawer {
   position: fixed;
   top: 0;
-  right: -100%; /* Hidden by default */
-  width: 75%;
+  right: -100%;
+  width: 70%;
   height: 100vh;
   background-color: var(--primary-color);
-  display: flex;
+  z-index: 1001;
+  
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  transition: 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
-  z-index: 99;
+  gap: 30px;
+  
+  transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
   list-style: none;
   box-shadow: -10px 0 30px rgba(0,0,0,0.1);
 }
 
 .mobile-drawer.active {
-  right: 0; /* Slides in when book is clicked */
+  right: 0 !important; 
 }
 
 .mobile-drawer li a {
-  font-family: var(--playfair-display);
-  font-size: 32px;
-  color: #fff;
+  color: var(--color-white);
+  font-family: var(--plus-jakarta-sans);
+  font-size: 24px;
   text-transform: uppercase;
+  transition: color 0.3s ease;
 }
 
-/* --- CONSOLIDATED RESPONSIVE FIXES --- */
+.mobile-drawer li a:hover {
+  color: var(--accent-gold);
+}
+
+/* --- MENU BOOK TOGGLE --- */
+.header__menu-mobile {
+  display: none;
+}
+
+.menu-book-toggle {
+  font-size: 30px;
+  color: var(--color-white);
+  cursor: pointer;
+  z-index: 1002;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.menu-book-toggle.active {
+  transform: rotate(-10deg) scale(1.1);
+  color: var(--accent-gold);
+}
+
+/* ========================================== */
+/*         RESPONSIVE BREAKPOINTS             */
+/* ========================================== */
 
 /* 1. TABLETS & SMALL LAPTOPS (Max 1060px) */
 @media screen and (max-width: 1060px) {
@@ -109,7 +136,7 @@ a {
 
     .hero-image img {
         width: 100%;
-        transform: none !important; /* FIXED: Stopped matrix transform from scattering the hero */
+        transform: none !important;
     }
 
     .about-us__image {
@@ -123,7 +150,7 @@ a {
         right: 50%;
         transform: translateX(50%);
         border-radius: 40px;
-        display: flex !important; /* Ensure it shows up centered */
+        display: flex !important;
     }
 
     .trending-snacks, .trending-drinks {
@@ -135,7 +162,6 @@ a {
         flex-direction: column-reverse !important;
     }
 
-    /* Remove arrows/decorations that cause layout overflow on mobile */
     .trending__discover, .trending__arrow {
         display: none !important;
     }
@@ -149,99 +175,536 @@ a {
 /* 2. MOBILE HEADER BREAKPOINT (900px) */
 @media screen and (max-width: 900px) {
     .header__menu {
-        display: none; /* Hide Desktop text menu */
+        display: none; 
     }
 
     .header__menu-mobile {
-        display: flex; /* Show the Open Book Icon */
+        display: flex; 
+    }
+
+    .mobile-drawer {
+        display: flex;
     }
 
     .header__nav {
-        padding: 20px;
+        padding: 16px 20px;
         background: var(--primary-color);
     }
 }
 
-/* 3. SMALL MOBILE DEVICES (Max 550px) */
-@media screen and (max-width: 550px) {
+/* 3. MEDIUM MOBILE (Max 768px) */
+@media screen and (max-width: 768px) {
+    /* Reduce header logo size */
     .header__logo h4 {
-        font-size: 26px;
+        font-size: 28px;
     }
 
-    .hero-content-info h1, .about-us__content .title, .popular-foods__title {
-        font-size: 38px !important;
+    /* Hero section optimization */
+    .hero-content-info h1 {
+        font-size: 42px !important;
+        line-height: 1.15;
+        margin-bottom: 12px;
+    }
+
+    .hero-content-info p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .hero-content__buttons {
+        flex-direction: row;
+        gap: 12px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .hero-content__buttons button {
+        width: auto;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .hero-content__order-button {
+        flex-shrink: 0;
+    }
+
+    /* Testimonial section */
+    .hero-content__testimonial {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .hero-content__customer h4 {
+        font-size: 32px;
+    }
+
+    .hero-content__review p {
+        font-size: 14px;
+    }
+
+    /* About section */
+    .about-us {
+        margin-bottom: 0 !important;
+        padding-bottom: 40px !important;
+    }
+    
+    .about-us__content .title {
+        font-size: 36px !important;
         line-height: 1.2;
     }
 
-    .hero-content-info, .about-us__content, .trending__content, .popular-foods {
-        padding: 40px 20px !important;
+    .about-us__content .description {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+    
+    /* Hide about us images on mobile */
+    .about-us__image {
+        display: none !important;
+    }
+    
+    .about-us__button {
+        display: none !important;
+    }
+
+    /* Popular foods section */
+    .popular-foods {
+        padding-top: 40px !important;
+        margin-top: 0 !important;
+    }
+    
+    .popular-foods__title {
+        font-size: 36px !important;
+        padding: 0 20px;
+    }
+
+    .popular-foods__title p {
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    .popular-foods__filters {
+        padding: 0 20px;
+        gap: 10px;
+    }
+
+    .popular-foods__filter-btn {
+        padding: 10px 18px;
+        font-size: 14px;
+        white-space: nowrap;
     }
 
     .popular-foods__card {
-        min-width: 100%; /* FIXED: Cards stack properly instead of scattering */
+        min-width: 280px;
     }
 
-    .about-us__image {
-        flex-direction: column;
+    .popular-foods__card-title {
+        font-size: 18px;
+    }
+    
+    .popular-foods__card-details {
+        gap: 8px;
     }
 
+    .popular-foods__card-price {
+        font-size: 16px;
+        font-weight: 600;
+    }
+    
+    .popular-foods__button {
+        display: flex;
+        margin: 32px auto;
+        justify-content: center;
+    }
+
+    /* Trending section */
+    .trending__content .title {
+        font-size: 32px;
+    }
+
+    .trending__content .description {
+        font-size: 15px;
+    }
+
+    .trending__list {
+        gap: 12px;
+    }
+
+    .trending__list li p {
+        font-size: 15px;
+    }
+
+    .trending__image {
+        display: none !important;
+    }
+
+    /* Subscription section */
+    .subscription h2 {
+        font-size: 32px;
+        text-align: center;
+        padding: 0 20px;
+        line-height: 1.3;
+    }
+
+    .subscription p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    
     .subscription__form {
         flex-direction: column;
+        width: 100%;
+        max-width: 400px;
         padding: 0;
         border: none;
         background: transparent;
+        gap: 12px;
     }
 
     .subscription__form input {
         width: 100%;
-        margin-bottom: 15px;
+        padding: 14px 20px;
         background: white;
         border-radius: 30px;
+        border: 2px solid var(--primary-color);
+        font-size: 15px;
+    }
+
+    .subscription__form button {
+        width: 100%;
+        padding: 14px 20px;
+        border-radius: 30px;
+        font-size: 15px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Footer */
+    .footer {
+        flex-direction: column;
+        gap: 30px;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .footer__nav, .footer__social {
+        justify-content: center;
     }
 }
 
-/* --- MENU BOOK TOGGLE ICON STYLING --- */
-/* --- MOBILE DRAWER BASE STATE --- */
-.mobile-drawer {
-    position: fixed;
-    top: 0;
-    right: -100%; /* Start hidden off-screen to the right */
-    width: 70%;
-    height: 100vh;
-    background-color: var(--primary-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    z-index: 99;
-    transition: 0.5s ease-in-out; /* Smooth slide effect */
-    list-style: none;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+/* 4. SMALL MOBILE DEVICES (Max 550px) */
+@media screen and (max-width: 550px) {
+    /* Header */
+    .header__logo h4 {
+        font-size: 24px;
+    }
+
+    .header__nav {
+        padding: 12px 16px;
+    }
+
+    /* Hero section - more compact */
+    .hero-content-info h1 {
+        font-size: 34px !important;
+        line-height: 1.1;
+    }
+
+    .hero-content-info p {
+        font-size: 15px;
+    }
+
+    .hero-content-info, 
+    .about-us__content, 
+    .trending__content, 
+    .popular-foods {
+        padding: 32px 16px !important;
+    }
+
+    .hero-content__buttons {
+        flex-direction: row;
+        gap: 12px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .hero-content__buttons button {
+        width: auto;
+        padding: 12px 18px;
+        font-size: 13px;
+    }
+    
+    .hero-content__order-button {
+        flex-shrink: 0;
+    }
+
+    /* Testimonial */
+    .hero-content__testimonial {
+        padding: 16px;
+    }
+
+    .hero-content__customer h4 {
+        font-size: 28px;
+    }
+
+    .hero-content__customer p {
+        font-size: 13px;
+    }
+
+    .hero-content__review {
+        padding: 12px;
+    }
+
+    .hero-content__review img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hero-content__review p {
+        font-size: 13px;
+    }
+
+    /* About section */
+    .about-us {
+        margin-bottom: 0 !important;
+        padding-bottom: 30px !important;
+    }
+    
+    .about-us__content .subtitle {
+        font-size: 15px;
+    }
+
+    .about-us__content .title {
+        font-size: 30px !important;
+        margin: 12px 0;
+    }
+
+    .about-us__content .description {
+        font-size: 14px;
+    }
+
+    .about-us__image {
+        flex-direction: column;
+        gap: 16px;
+        display: none !important;
+    }
+
+    .about-us__button {
+        padding: 12px 24px;
+        font-size: 14px;
+        display: none !important;
+    }
+
+    /* Popular foods */
+    .popular-foods {
+        padding-top: 30px !important;
+        margin-top: 0 !important;
+    }
+    
+    .popular-foods__title {
+        font-size: 30px !important;
+        padding: 0 16px;
+    }
+
+    .popular-foods__title p {
+        font-size: 12px;
+    }
+
+    .popular-foods__filters {
+        padding: 0 16px;
+    }
+
+    .popular-foods__filter-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .popular-foods__filter-btn img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .popular-foods__card {
+        min-width: 100%;
+        padding: 16px;
+    }
+
+    .popular-foods__card-image {
+        height: 200px;
+    }
+
+    .popular-foods__card-title {
+        font-size: 17px;
+        margin: 12px 0 8px;
+    }
+    
+    .popular-foods__card-details {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .popular-foods__card-rating p,
+    .popular-foods__card-price {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .popular-foods__button {
+        margin: 24px auto;
+        padding: 12px 28px;
+        font-size: 14px;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Trending section */
+    .trending__content .subtitle {
+        font-size: 15px;
+    }
+
+    .trending__content .title {
+        font-size: 28px;
+        margin: 12px 0;
+    }
+
+    .trending__content .description {
+        font-size: 14px;
+    }
+
+    .trending__list {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .trending__list li {
+        width: 48%;
+    }
+
+    .trending__list li p {
+        font-size: 14px;
+    }
+
+    .trending__icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .trending__image {
+        height: 280px;
+        margin: 20px 0;
+        display: none !important;
+    }
+
+    .trending__image img {
+        border-radius: 12px;
+    }
+
+    /* Subscription */
+    .subscription {
+        padding: 40px 16px;
+    }
+
+    .subscription h2 {
+        font-size: 28px;
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+
+    .subscription p {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+
+    .subscription__form {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        border: none;
+        background: transparent;
+        gap: 12px;
+    }
+
+    .subscription__form input {
+        width: 100%;
+        padding: 14px 20px;
+        margin-bottom: 0;
+        background: white;
+        border-radius: 30px;
+        border: 2px solid var(--primary-color);
+        font-size: 15px;
+    }
+
+    .subscription__form button {
+        width: 100%;
+        padding: 14px 20px;
+        border-radius: 30px;
+        font-size: 15px;
+    }
+
+    /* Footer */
+    .footer__logo {
+        font-size: 24px;
+    }
+
+    .footer__nav {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .footer__nav li a {
+        font-size: 14px;
+    }
+
+    .footer__social {
+        gap: 20px;
+    }
+
+    .footer__social li {
+        width: 36px;
+        height: 36px;
+    }
+
+    /* Mobile drawer adjustment */
+    .mobile-drawer {
+        width: 80%;
+    }
+
+    .mobile-drawer li a {
+        font-size: 20px;
+    }
+
+    .menu-book-toggle {
+        font-size: 26px;
+    }
 }
 
-/* --- FUNCTIONAL STATE: When 'active' class is added via JS --- */
-.mobile-drawer.active {
-    right: 0; /* Slides into view */
-}
+/* 5. EXTRA SMALL DEVICES (Max 375px) */
+@media screen and (max-width: 375px) {
+    .header__logo h4 {
+        font-size: 22px;
+    }
 
-.mobile-drawer li a {
-    color: var(--color-white);
-    font-family: var(--playfair-display);
-    font-size: 28px;
-    text-transform: uppercase;
-}
+    .hero-content-info h1 {
+        font-size: 30px !important;
+    }
 
-/* The Book Icon alignment */
-.menu-book-toggle {
-    font-size: 30px;
-    color: var(--color-white);
-    cursor: pointer;
-    z-index: 100; /* Stays above the green drawer */
-    transition: transform 0.3s ease;
-}
+    .about-us__content .title,
+    .popular-foods__title,
+    .trending__content .title {
+        font-size: 26px !important;
+    }
 
-.menu-book-toggle.active {
-    transform: rotate(-10deg) scale(1.1);
-    color: var(--accent-gold); /* Turns gold when menu is open */
+    .subscription h2 {
+        font-size: 24px;
+    }
+
+    .popular-foods__card {
+        padding: 12px;
+    }
+
+    .trending__list li {
+        width: 100%;
+    }
 }
