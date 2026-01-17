@@ -1,5 +1,6 @@
-import check from '../assets/check.svg'
-import star from '../assets/star.svg'
+import check from '/src/assets/check.svg'  // ✅ Same directory level
+import star from '/src/assets/star.svg'    // ✅ Same directory level
+
 // Ensure soup1 and soup2 are imported if you are using them in your 'cards' array!
 // import soup1 from '../assets/soup1.png' 
 
