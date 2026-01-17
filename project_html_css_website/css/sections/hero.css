@@ -56,9 +56,11 @@
 
 .hero-content-info h1 {
   font-size: 80px;
-  font-weight: 600px;
+  font-weight: 600;
   font-family: var(--playfair-display);
   color: var(--secondary-color);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .hero-content-info p {
@@ -68,6 +70,7 @@
   color: var(--secondary-color);
   font-size: 18px;
   font-weight: 400;
+  line-height: 1.6;
 }
 
 .hero-content__buttons {

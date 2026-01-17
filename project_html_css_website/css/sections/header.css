@@ -6,22 +6,23 @@
 
 .header__nav {
   display: flex;
-  align-items: stretch; /* This forces both sides to have the exact same height */
+  align-items: stretch;
   overflow: hidden;
 }
 
-.header__nav li:hover{
+.header__nav li:hover {
   color: var(--accent-gold);
 }
 
 .header__logo {
   flex: 1;
   display: flex;
-  align-items: center; /* Centers logo text vertically */
+  align-items: center;
   justify-content: center;
   position: relative;
   padding: 20px;
 }
+
 .header__logo-overlay {
   position: absolute;
   inset: 0;
@@ -30,21 +31,32 @@
 }
 
 .header__logo h4 {
-  font-family: "Agbalumo", system-ui; /* Your new font */
+  font-family: "Agbalumo", system-ui;
   font-weight: 400;
   font-size: 40px;
   text-transform: uppercase;
   color: #fff;
 }
 
-.header__menu, .header__menu-mobile {
+/* DESKTOP MENU - Visible by default */
+.header__menu {
   padding: 20px;
   flex: 1.236;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 64px;
+  list-style: none;
+}
 
+/* MOBILE MENU - Hidden by default */
+.header__menu-mobile {
+  padding: 20px;
+  flex: 1.236;
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 64px;
   list-style: none;
 }
 
@@ -64,9 +76,13 @@
   object-fit: contain;
 }
 
-.header__menu-mobile {
-  display: none;
-  gap: 20px;
-
-  position: relative;
+/* RESPONSIVE - Hide desktop menu on mobile screens */
+@media screen and (max-width: 900px) {
+  .header__menu {
+    display: none !important;
+  }
+  
+  .header__menu-mobile {
+    display: flex !important;
+  }
 }

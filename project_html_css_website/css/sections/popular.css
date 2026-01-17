@@ -105,9 +105,9 @@
 
 /* --- GENERAL HOVER (For all cards) --- */
 .popular-foods__card:hover {
-  background: #fff !important; /* !important ensures it overrides any specific class backgrounds */
-  transform: scale(1.1); 
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  background: #fff !important;
+  transform: scale(1.05); 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   z-index: 10;
 }
 
@@ -137,6 +137,7 @@
   transition: 0.3s;
 }
 
+/* FIXED: Card details - prevents wrapping */
 .popular-foods__card-details {
   width: 100%;
   line-height: 1;
@@ -146,10 +147,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
 }
 
 .popular-foods__filters::-webkit-scrollbar {
   display: none;
+}
+
+/* FIXED: Rating and price - prevent wrapping */
+.popular-foods__card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  margin-right: 50px;
 }
 
 .popular-foods__card-rating p,
@@ -158,6 +170,12 @@
   font-family: var(--plus-jakarta-sans);
   color: #fff;
   transition: 0.3s;
+  white-space: nowrap;
+}
+
+.popular-foods__card-price {
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 /* --- ACTIVE CARD RESET --- */
@@ -201,7 +219,7 @@
 }
 
 .popular-foods__filter-btn img {
-  width: 28px;       /* Shrunk icons (Rice, Soup 1, etc.) */
+  width: 28px;
   height: 28px;
   object-fit: contain;
 }
