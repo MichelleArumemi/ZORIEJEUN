@@ -47,10 +47,10 @@
 }
 
 .hero-content-info {
-  padding: 64px;
+  padding: 32px 64px 24px 64px; /* Even less padding: 32px top, 24px bottom */
   flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
 }
 
@@ -64,21 +64,20 @@
 }
 
 .hero-content-info p {
-  margin: 32px 0 0 32px;
-
+  margin: 32px 0 ;
   font-family: var(--plus-jakarta-sans);
-  color: var(--secondary-color);
+  color: #000;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.6;
 }
 
 .hero-content__buttons {
-  margin: 41px 0 0 41px;
-
+  margin: 0; /* Remove all margins */
   display: flex;
   flex-wrap: wrap;
   gap: 36px;
+  width: 100%; /* Ensure full width */
 }
 
 .hero-content__order-button {
@@ -91,7 +90,7 @@
 
   cursor: pointer;
 
-  color: #fff;
+  color: #000;
   font-weight: 500;
   font-size: 18px;
   line-height: 23px;

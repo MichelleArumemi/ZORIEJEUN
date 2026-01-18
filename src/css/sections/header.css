@@ -49,16 +49,17 @@
   list-style: none;
 }
 
-/* MOBILE MENU - Hidden by default */
+/* MOBILE MENU TOGGLE CONTAINER - Hidden by default */
 .header__menu-mobile {
   padding: 20px;
   flex: 1.236;
-  display: none;
+  display: none; /* Hidden on desktop */
   align-items: center;
   justify-content: flex-end;
-  gap: 64px;
-  list-style: none;
 }
+
+/* This is wrong - remove or fix it */
+/* .header__menu-mobile li { ... } */
 
 .header__menu li {
   font-weight: 500;
@@ -76,7 +77,7 @@
   object-fit: contain;
 }
 
-/* RESPONSIVE - Hide desktop menu on mobile screens */
+/* RESPONSIVE - Hide desktop menu, show mobile toggle on mobile */
 @media screen and (max-width: 900px) {
   .header__menu {
     display: none !important;
