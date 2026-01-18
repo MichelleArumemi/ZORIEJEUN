@@ -72,8 +72,9 @@ a {
   font-weight: 600;
   font-family: var(--playfair-display);
   color: var(--black-charcoal);
-  line-height: 1.3;
+  line-height: 1.2;
   margin: 8px 0;
+  margin-top: 0 !important;
 }
 
 .description {
@@ -263,8 +264,12 @@ body {
   }
 
 .hero {
+  display: flex !important;
+  flex-direction: column;
+  margin: 0;
   padding: 0; /* This adds space around the hero image section */
-  background-color: #fff !important;
+  background: linear-gradient(to bottom, var(--primary-color) 60%, var(--color-white) 40%) !important;
+
 }
   /* Adjust logo size for mobile */
   .header__logo h4 {
@@ -305,16 +310,20 @@ body {
   }
 
   /* Hero section mobile */
-  .hero {
-    flex-direction: column;
-    padding: 20px 0;
-    gap: 20px;
-  }
 
   .hero-image {
     height: 250px;
-    
+    margin: 0 !important;
   }
+
+  .hero-content-info {
+    margin: 0 !important;
+    padding: 20px 16px !important;
+    background-color: var(--color-white);
+    border-top: none;
+    width: 100% !important;
+  }
+
 
  .hero-content-info h1 {
     font-size: 28px !important;
@@ -328,16 +337,6 @@ body {
     align-self: flex-start !important;
   }
 
-  .hero-content-info {
-    padding: 24px 16px !important;
-    display: flex !important;
-    background-color: var(--color-white);
-    flex-direction: column !important;
-    align-items: flex-start !important; /* This should already be here */
-    justify-content: flex-start !important; /* ADD THIS */
-    width: 100% !important;
-    text-align: left !important; /* ADD THIS */
-  }
 
   .hero-content-info p {
     font-size: 14px !important;
@@ -352,53 +351,48 @@ body {
   }
 
 .hero-content__buttons {
-  justify-content: flex-start;
-  flex-direction: row; /* Change from column to row */
-  gap: 12px;
-  width: 100%;
-  display: flex;
-  width: 100%;
-  flex-wrap: nowrap;
-  align-items: center;
-  gap: 2px;
-  margin: 20px 0 0 0;
+display: flex !important;
+  flex-direction: row !important; /* Keep them horizontal */
+  flex-wrap: nowrap !important;  /* Force them to stay on one line */
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 8px !important; /* Tighten the space between buttons */
+  width: 100% !important;
 }
 
 .hero-content__order-button{
-  min-width: auto;
-  color: #000;
-  font-family: var(--plus-jakarta-sans);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 14px 28px;
-  border: none;
-  border-radius: 24px;
-  text-align: center;
-  cursor: pointer;
-  width: auto;
-  gap: 1px;
-  white-space: nowrap;
+flex-shrink: 0 !important; /* Prevent this button from squishing */
+  padding: 12px 18px !important; /* Smaller padding to save space */
+  font-size: 14px !important;
+  width: auto !important;
+  min-width: fit-content !important;
 }
 
 .hero-content__play-button {
-  background-color: transparent;
-  color: var(--black-charcoal);
-  font-family: var(--plus-jakarta-sans);
-  font-size: 14px;
-  font-weight: 500;
-  padding: 14px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: border-color 0.3s ease;
-  width: 100%;
-  white-space: nowrap;
+  flex-shrink: 1 !important; /* Allow this one to be flexible */
+  width: auto !important;    /* CRITICAL: Change from 100% to auto */
+  padding: 12px 10px !important; 
+  font-size: 14px !important;
+  white-space: nowrap !important; /* Stop the text from wrapping/cutting */
+  display: flex !important;
+  align-items: center !important;
+}
+
+.hero-content__play-button img {
+  width: 30px !important; /* Scale down icon to fit the row */
+  height: 30px !important;
+  margin-right: 6px !important;
 }
   .hero-content__testimonial {
-    padding: 16px;
-    gap: 8px;
-    line-height: 1.2;
+  display: flex;
+  justify-content: center !important; /* Center horizontally */
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 16px !important;
+  text-align: center !important;
+  gap: 8px;
+  line-height: 1.2;
   }
 
   .hero-content__customer {
@@ -434,59 +428,67 @@ body {
 
   /* About us section mobile */
   .about-us {
-    padding: 40px 16px !important; 
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 0 16px !important; /* Top changed from 40px to 0px */
+  margin-top: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important; /* Removes internal vertical spacing between elements */
+  background-color: #fff;
+  }
+
+  .about-us__image {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    padding: 0 !important;
     margin: 0 !important;
-    flex-direction: column !important;
-    gap: 24px !important;
-    min-height: auto !important;
-    align-items: center !important;
-    text-align: center !important;
-    width: 100%;
   }
 
   .about-us__eguisi_soup img,
   .about-us__soup img {
     display: none;
+    visibility: hidden;
     height: 200px;
   }
 
- .about-us__button{
-    /* Remove any positioning that puts it before text */
-   position: static !important; /* Remove absolute positioning */
-    transform: none !important; /* Remove translateY */
-    top: auto !important;
-    right: auto !important;
-    display: block !important;
-    margin: 200px auto 0 auto !important; /* Top margin pushes it below text */
-    width: auto !important;
-    min-width: 160px !important;
-    max-width: 200px !important;
-    padding: 14px!important;
-    min-height: auto !important;
-    border-radius: 24px !important; /* All corners rounded for mobile */
-    font-size: 14px !important;
-    background: var(--accent-gold) !important; /* Use gold color for mobile */
-    color: black !important;
-    border: none !important;
-    box-shadow: none !important;
-    gap: 0 !important;
-  }
+.about-us__button {
+  min-height: 30px;
+  order: 2 !important; /* Pushes button BELOW the text */
+  position: static !important;
+  display: 10px auto 0 auto !important; /* Normal spacing */
+  width: 150px !important;
+  padding: 10px 24px !important;
+  background: var(--accent-gold) !important;
+  color: black !important;
+  padding: 12px 30px !important;
+  font-size: 14px;
+  transform: none !important;
+  font-weight: 200;
+  margin: 20px auto 0 auto !important;
+  border-radius: 32px 0 0 32px !important;
+  text-align: center;
+}
 
 .about-us .subtitle {
   color: var(--primary-color) !important; /* Green color */
   font-size: 14px !important;
   font-weight: 400 !important;
   font-family: var(--plus-jakarta-sans) !important;
-  opacity: 1;
+  margin-top: 0;
+  padding-top: 10px;
   letter-spacing: -0.01em !important;
   margin-bottom: 8px !important; /* Add spacing below subtitle */
   display: block !important; /* Ensure it's visible */
 }
 
   .about-us .title {
+    margin-top: 0 !important;
     font-size: 24px !important; /* Slightly larger */
-    line-height: 1.3 !important;
-    margin-bottom: 16px !important; /* Consistent spacing */
+    line-height: 1.2 !important;
+    margin-bottom: 12px !important; /* Consistent spacing */
     
     color: var(--secondary-color) !important;
     font-weight: 700 !important; /* Make it bolder */
@@ -494,8 +496,10 @@ body {
 
   .about-us__content {
     order: 1;
-    padding: 20px 0 !important;
-    margin-top: 200px 0 !important; /* Add this */
+   padding-top: 0 !important; 
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-top: 0 !important;
     display: flex !important;
     flex-direction: column !important;
   }
@@ -506,11 +510,14 @@ body {
 
   .about-us__content .title {
   order: 1 !important;
-    letter-spacing: -0.02em;
+  letter-spacing: -0.02em;
 }
 
-
-  .about-us__content p {
+.about-us__content .subtitle{
+  margin-top: 0 !important; 
+  padding-top: 5px !important; /* Minimal controlled gap */
+  margin-bottom: 8px !important;
+  display: block !important;
   order: 1 !important;
 }
 
@@ -519,6 +526,7 @@ body {
   }
 
 .about-us p {
+  order:1;
   font-size: 13px !important;
   line-height: 1.5 !important;
   margin-bottom: 16px !important;
@@ -526,17 +534,19 @@ body {
 }
 
   .about-us__content p {
-  font-size: 13px !important;
+  font-size: 14px !important;
   line-height: 1.5 !important;
-  margin-bottom: 24px !important;
+  margin-bottom: 12px !important;
+  margin-top: 0 !important;
   color: var(--gray-subtle) !important;
   }
 
   .about-us .description {
     font-size: 14px !important;
     line-height: 1.6 !important;
-    margin-bottom: 24px !important; /* Space before button */
+    margin-bottom: 30px !important; /* Space before button */
     color: var(--gray-subtle) !important;
+    margin-top: 0 !important;
   }
 
   /* Popular foods section mobile */
@@ -753,7 +763,6 @@ body {
     color: #fff !important;
     background: rgba(255, 255, 255, 0.15) !important;
     border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    border-radius: 25px !important;
     outline: none !important;
     text-align: left !important; /* Centers the placeholder text */
   }
