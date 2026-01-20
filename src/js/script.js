@@ -1,11 +1,13 @@
 import check from '/src/assets/check.svg'  // ✅ Same directory level
 import star from '/src/assets/star.svg'    // ✅ Same directory level
-
+import { inject } from '@vercel/analytics';
 // Ensure soup1 and soup2 are imported if you are using them in your 'cards' array!
 // import soup1 from '../assets/soup1.png' 
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+
+inject()
 
 // Init AOS animation with faster settings
 AOS.init({
@@ -174,3 +176,4 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
